@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="utf-8"?>
+<navigation xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/bottom_navigation"
+    app:startDestination="@id/home_Fragment">
+    <fragment
+        android:id="@+id/home_Fragment"
+        android:name="com.example.myhome.BluetoothServices.home_Fragment"
+        android:label="fragment_home_fragment"
+        tools:layout="@layout/fragment_home_" />
+    <fragment
+        android:id="@+id/iklimlendirme"
+        android:name="com.example.myhome.iklimlendirme"
+        android:label="iklimlendirme"
+        tools:layout="@layout/fragment_iklimlendirme" />
+
+    <fragment
+        android:id="@+id/kontrol"
+        android:name="com.example.myhome.Kontrol"
+        android:label="kontrol"
+        tools:layout="@layout/fragment_kontrol" />
+
+</navigation>

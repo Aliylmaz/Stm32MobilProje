@@ -1,0 +1,58 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:theme="@style/Theme.AppCompat.DayNight.NoActionBar"
+    android:background="@color/arkaplanRengi"
+
+    tools:context=".EslesmisCihazlar">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/cihazlarAppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        tools:ignore="MissingConstraints">
+        <com.google.android.material.appbar.MaterialToolbar
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/surface"
+            app:title="EŞLEŞMİŞ CİHAZLAR"
+            app:navigationIconTint="@color/beyazRenk"
+            app:titleTextColor="@color/beyazRenk"
+            app:navigationIcon="@drawable/baseline_arrow_back_24"
+            />
+
+    </com.google.android.material.appbar.AppBarLayout>
+
+    <TextView
+        android:id="@+id/cihazlarDurum"
+        android:layout_width="match_parent"
+        android:textColor="@color/griRenk"
+        android:text="Cihaz Bulunamadı"
+        android:textAlignment="center"
+        android:layout_marginTop="16dp"
+        android:textSize="20dp"
+        android:layout_height="wrap_content"
+        app:layout_constraintTop_toBottomOf="@+id/cihazlarAppBarLayout"/>
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/cihazlarRefresh"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+
+        android:layout_marginTop="8dp"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cihazlarDurum"
+        >
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/cihazlarRecyclerView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"/>
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

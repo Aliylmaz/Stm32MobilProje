@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:fitsSystemWindows="true"
+    android:background="@color/arkaplanRengi"
+    tools:context=".mainActivity">
+
+    <com.google.android.material.appbar.AppBarLayout
+        android:id="@+id/cihazlarAppBarLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:elevation="0dp"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent">
+
+        <com.google.android.material.appbar.MaterialToolbar
+            android:id="@+id/materialToolbar"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:elevation="0dp"
+            android:background="@color/surface"
+            app:navigationIconTint="@color/beyazRenk"
+            app:navigationIcon="@drawable/baseline_home_24">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+                <TextView
+                    android:id="@+id/toolbarTitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="16dp"
+                    android:text="YIKUDER"
+                    android:textColor="@color/beyazRenk"
+                    android:textSize="20sp" />
+
+                <TextView
+                    android:id="@+id/toolbarSubtitle"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/toolbarTitle"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginEnd="16dp"
+                    android:text="Evinizin Asistanı"
+                    android:textColor="@color/griRenk"
+                    android:textSize="14sp" />
+            </RelativeLayout>
+
+        </com.google.android.material.appbar.MaterialToolbar>
+    </com.google.android.material.appbar.AppBarLayout>
+
+
+
+    <androidx.fragment.app.FragmentContainerView
+        android:id="@+id/fragmentContainerView"
+        android:name="androidx.navigation.fragment.NavHostFragment"
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        app:defaultNavHost="true"
+        app:layout_constraintBottom_toTopOf="@+id/bottomNavigationView"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:navGraph="@navigation/bottom_navigation"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/cihazlarAppBarLayout" />
+
+    <com.google.android.material.bottomnavigation.BottomNavigationView
+        android:id="@+id/bottomNavigationView"
+        style="@style/Widget.MaterialComponents.BottomNavigationView.Colored"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foregroundTint="@color/surface"
+        android:textAlignment="center"
+        app:elevation="5dp"
+        app:enforceMaterialTheme="false"
+        app:itemBackground="@color/surface"
+        app:itemHorizontalTranslationEnabled="false"
+        app:itemIconSize="20sp"
+        app:itemIconTint="@color/beyazRenk"
+        app:itemRippleColor="@color/surface"
+        app:itemTextAppearanceActiveBoldEnabled="true"
+        app:itemTextColor="@color/beyazRenk"
+        app:labelVisibilityMode="labeled"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:menu="@menu/home_page_menu" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
