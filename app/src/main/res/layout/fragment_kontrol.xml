@@ -4,7 +4,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/arkaplanRengi"
+    android:background="?android:attr/colorBackground"
     tools:context=".Kontrol">
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -20,58 +20,67 @@
             android:text="Kontrol Paneli"
             android:textColor="@android:color/white"
             android:textSize="24sp"
+            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_color_picker"
-            style="@style/ShapeAppearanceOverlay.Material3.Button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="32dp"
-            android:text="RGB AYARLAMA"
+            android:text="RGB Ayarlama"
             android:textSize="16sp"
-            android:padding="16dp"
+            android:icon="@drawable/ic_color_palette"
+            android:iconPadding="8dp"
+            android:iconGravity="textStart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/textViewTitle" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_open_close_door"
-            style="@style/ShapeAppearanceOverlay.Material3.Button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Kapıyı Aç/Kapat"
             android:textSize="16sp"
-            android:padding="16dp"
+            android:icon="@drawable/ic_door"
+            android:iconPadding="8dp"
+            android:iconGravity="textStart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_color_picker" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_rotate_park"
-            style="@style/ShapeAppearanceOverlay.Material3.Button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Otoparkı Döndür"
             android:textSize="16sp"
-            android:padding="16dp"
+            android:icon="@drawable/ic_rotate"
+            android:iconPadding="8dp"
+            android:iconGravity="textStart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_open_close_door" />
 
-        <Button
+        <com.google.android.material.button.MaterialButton
             android:id="@+id/button_open_close_garden_light"
-            style="@style/ShapeAppearanceOverlay.Material3.Button"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:text="Bahçe Işıklarını Aç/Kapat"
             android:textSize="16sp"
-            android:padding="16dp"
+            android:icon="@drawable/ic_light"
+            android:iconPadding="8dp"
+            android:iconGravity="textStart"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintTop_toBottomOf="@id/button_rotate_park" />

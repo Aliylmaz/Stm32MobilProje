@@ -22,6 +22,10 @@ public class Kontrol extends Fragment {
     Button buttonRotatePark;
     Button buttonOpenCloseGardenLight;
 
+    private boolean isDoorOpen = false;
+    private boolean isParkRotated = false;
+    private boolean isGardenLightOn = false;
+
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
@@ -99,21 +103,43 @@ public class Kontrol extends Fragment {
 
     private void toggleDoor() {
         // Kapı açma/kapatma işlevi
-        BluetoothService.getInstance(getContext()).sendData("<D,1>");
-        BluetoothService.getInstance(getContext()).sendData("<D,0>");
+        if (isDoorOpen){
+            isDoorOpen=false;
+            BluetoothService.getInstance(getContext()).sendData(formatCommand("D", 0));
+
+
+        }else {
+            isDoorOpen=true;
+            BluetoothService.getInstance(getContext()).sendData(formatCommand("D", 1));
+        }
+
+
     }
 
     private void rotatePark() {
         // Otopark döndürme işlevi
-        BluetoothService.getInstance(getContext()).sendData("<P,1");
+        if (isParkRotated){
+            isParkRotated=false;
+            BluetoothService.getInstance(getContext()).sendData(formatCommand("P", 0));
+
+        }else {
+            isParkRotated=true;
+            BluetoothService.getInstance(getContext()).sendData(formatCommand("P", 1));
+        }
+
     }
 
     private void toggleGardenLight() {
-        // Bahçe ışıkları açma/kapatma işlevi
-        BluetoothService.getInstance(getContext()).sendData("<G,1>");
-        BluetoothService.getInstance(getContext()).sendData("<G,0>");
-    }
+        // Bahçe ışığı açma/kapatma işlevi
+        if (isGardenLightOn){
+            isGardenLightOn=false;
+            BluetoothService.getInstance(getContext()).sendData(formatCommand("G", 0));
 
+        }else {
+            isGardenLightOn=true;
+            BluetoothService.getInstance(getContext()).sendData(formatCommand("G", 1));
+        }
+    }
     public static Kontrol newInstance() {
         return new Kontrol(); // Fragment oluşturuldu, fragment:bir sayfanın içindeki bir parça
     }
@@ -132,17 +158,9 @@ public class Kontrol extends Fragment {
         Log.d("RGB", formattedValues);
     }
 
-    public void OpenDoor() {
-        BluetoothService.getInstance(getContext()).sendData("<D,1>");
-    }
 
-    public void CloseDoor() {
-        BluetoothService.getInstance(getContext()).sendData("<D,0>");
-    }
 
-    public void CloseBuzzer() {
-        BluetoothService.getInstance(getContext()).sendData("<B,0>");
-    }
+
 
     public static int[] hexToRgb(String hex) {
         // Hex kodunu '#' karakterinden temizle
@@ -165,6 +183,18 @@ public class Kontrol extends Fragment {
 
         // 0-255 aralığındaki parlaklığı 0-100 aralığına normalize et
         return (brightness * 100) / 255;
+    }
+    private String formatCommand(String command, int value) {
+        // Komutu ! karakteri ile doldurarak 32 karakter uzunluğa tamamla
+        String formattedCommand = String.format("<%s,%d>", command, value);
+        int remainingLength = 32 - formattedCommand.length();
+        if (remainingLength > 0) {
+            for (int i = 0; i < remainingLength - 1; i++) { // Sondaki > karakteri için -1
+                formattedCommand += "!";
+            }
+        }
+        formattedCommand += ">";
+        return formattedCommand;
     }
 }
 
