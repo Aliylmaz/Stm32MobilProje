@@ -5,11 +5,12 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.ArrayAdapter;
 import android.widget.SeekBar;
 import android.widget.Switch;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
 import androidx.fragment.app.Fragment;
 
 import com.example.myhome.BluetoothServices.BluetoothService;
@@ -20,77 +21,63 @@ public class iklimlendirme extends Fragment {
 
     private static final String TAG = "iklimlendirmeFragment";
 
-    SeekBar seekbarDerece;
-    Switch switchIklimlendirme;
+    private SeekBar seekbar;
+    private Switch switchIklimlendirme;
+    private TextView textViewDereceDisplay;
 
-    SeekBar seekbar;
-
-    TextView textViewDereceDisplay;
-
+    @Nullable
     @Override
-    public View onCreateView(LayoutInflater inflater, ViewGroup container,
-                             Bundle savedInstanceState) {
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_iklimlendirme, container, false);
 
         try {
             Log.d(TAG, "Initializing page elements.");
             pageInitialize(view);
 
-            Log.d(TAG, "Setting up spinner adapter.");
-            ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(getContext(),
-                    R.array.derece_array, android.R.layout.simple_spinner_item);
-            adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-
-
-
-            Log.d(TAG, "Setting up spinner listener.");
-
+            Log.d(TAG, "Setting up seekbar listener.");
             seekbar.setOnSeekBarChangeListener(new SeekBar.OnSeekBarChangeListener() {
                 @Override
                 public void onProgressChanged(SeekBar seekBar, int progress, boolean fromUser) {
-                    Log.d("DEGERİM",String.valueOf(progress));
+                    Log.d(TAG, "SeekBar Progress Changed: " + progress);
                     textViewDereceDisplay.setText(String.valueOf(progress) + "°C");
-
-
-
-
-
                 }
 
                 @Override
                 public void onStartTrackingTouch(SeekBar seekBar) {
-
-
+                    Log.d(TAG, "SeekBar Start Tracking");
                 }
 
                 @Override
                 public void onStopTrackingTouch(SeekBar seekBar) {
-
+                    Log.d(TAG, "SeekBar Stop Tracking at: " + seekBar.getProgress());
                     sendFormattedData('T', seekBar.getProgress());
-
                 }
             });
 
-
-            Log.d(TAG, "Setting up button click listener.");
-
+            Log.d(TAG, "Setting up switch listener.");
+            switchIklimlendirme.setOnCheckedChangeListener((buttonView, isChecked) -> {
+                Log.d(TAG, "Switch State Changed: " + (isChecked ? "ON" : "OFF"));
+                sendFormattedData('I', isChecked ? 1 : 0);
+            });
 
         } catch (Exception e) {
             Log.e(TAG, "Error in onCreateView", e);
-            Log.d("hata aldım",e.getMessage());
         }
 
         return view;
-}
-
-    void pageInitialize(View view) {
-
-        switchIklimlendirme = view.findViewById(R.id.switchIklimlendirme);
-
-        textViewDereceDisplay = view.findViewById(R.id.textViewDereceValue);
-        seekbar = view.findViewById(R.id.seekBar);
     }
 
+    private void pageInitialize(View view) {
+        try {
+            Log.d(TAG, "Initializing components.");
+            switchIklimlendirme = view.findViewById(R.id.switchIklimlendirme);
+            textViewDereceDisplay = view.findViewById(R.id.textViewDereceValue);
+            seekbar = view.findViewById(R.id.circular_seek_bar);
+            Log.d(TAG, "Components initialized successfully.");
+        } catch (Exception e) {
+            Log.e(TAG, "Error in pageInitialize", e);
+        }
+    }
 
     private void sendFormattedData(char prefix, int value) {
         String data = String.format("<%c,%d", prefix, value);
@@ -102,6 +89,6 @@ public class iklimlendirme extends Fragment {
         }
         data += '>'; // Add closing '>'
         BluetoothService.getInstance(getContext()).sendData(data);
-        Log.d("sendFormattedData", data); // Debug için gönderilen veriyi loglayın
+        Log.d(TAG, "sendFormattedData: " + data); // Debug için gönderilen veriyi loglayın
     }
 }

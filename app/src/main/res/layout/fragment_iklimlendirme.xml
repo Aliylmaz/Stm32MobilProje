@@ -7,60 +7,69 @@
     android:background="@color/arkaplanRengi"
     tools:context=".iklimlendirme">
 
-
     <androidx.constraintlayout.widget.ConstraintLayout
+        android:id="@+id/iklimlendirmeConstrain"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:id="@+id/iklimlendirmeConstrain"
         android:padding="16dp">
-
 
         <TextView
             android:id="@+id/textViewIklimlendirmeTitle"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="150dp"
+            android:layout_marginTop="32dp"
             android:text="İklimlendirme"
             android:textColor="@android:color/white"
             android:textSize="24sp"
-            app:layout_constraintTop_toTopOf="parent"
-            tools:layout_editor_absoluteX="106dp" />
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
+        <com.seosh817.circularseekbar.CircularSeekBar
+            android:id="@+id/circular_seek_bar"
+            android:layout_width="match_parent"
+            android:layout_height="300dp"
+            android:layout_marginTop="88dp"
+            app:circularSeekBar_animation="normal"
+            app:circularSeekBar_animationDurationMillis="1000"
+            app:circularSeekBar_barWidth="8dp"
+            app:circularSeekBar_innerThumbRadius="5dp"
+            app:circularSeekBar_innerThumbStrokeWidth="3dp"
+            app:circularSeekBar_min="16"
+            app:circularSeekBar_max="35"
+            app:circularSeekBar_outerThumbRadius="5dp"
+            app:circularSeekBar_outerThumbStrokeWidth="10dp"
+            app:circularSeekBar_progressColor="@array/rainbow"
+            app:circularSeekBar_startAngle="90"
+            app:circularSeekBar_sweepAngle="360"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textViewDereceValue"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="128dp"
+            android:layout_marginTop="24dp"
             android:text="22 °C"
-
             android:textColor="@android:color/white"
             android:textSize="24sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.498"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/seekBar" />
+            app:layout_constraintTop_toBottomOf="@+id/circular_seek_bar" />
 
         <Switch
             android:id="@+id/switchIklimlendirme"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="16dp"
             android:text="İklimlendirme"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            tools:layout_editor_absoluteY="557dp" />
-
-        <SeekBar
-            android:id="@+id/seekBar"
-            style="@style/Widget.AppCompat.SeekBar.Discrete"
-            android:layout_width="163dp"
-            android:layout_height="49dp"
-
-            android:max="35"
-            android:progress="16"
-            app:layout_constraintEnd_toEndOf="@+id/textViewIklimlendirmeTitle"
-            app:layout_constraintStart_toStartOf="@+id/textViewIklimlendirmeTitle"
-            tools:layout_editor_absoluteY="316dp" />
+            app:layout_constraintTop_toBottomOf="@id/textViewDereceValue" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
