@@ -29,11 +29,11 @@
         app:circularSeekBar_barWidth="8dp"
         app:circularSeekBar_innerThumbRadius="5dp"
         app:circularSeekBar_innerThumbStrokeWidth="3dp"
-        app:circularSeekBar_min="16"
-        app:circularSeekBar_max="35"
+        app:circularSeekBar_min="0"
+        app:circularSeekBar_max="19"
         app:circularSeekBar_outerThumbRadius="5dp"
         app:circularSeekBar_outerThumbStrokeWidth="10dp"
-        app:circularSeekBar_progressGradientColors="@array/rainbow"
+        app:circularSeekBar_progressGradientColors="@array/blue_to_red"
         app:circularSeekBar_startAngle="45"
         app:circularSeekBar_dashWidth="1"
         app:circularSeekBar_dashGap="2"
@@ -63,6 +63,6 @@
         app:layout_constraintTop_toBottomOf="@id/textViewDereceValue"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="32dp" />
+        android:layout_marginTop="16dp" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

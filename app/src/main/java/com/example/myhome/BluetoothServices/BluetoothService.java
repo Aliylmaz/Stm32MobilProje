@@ -4,6 +4,7 @@ import android.bluetooth.BluetoothAdapter;
 import android.bluetooth.BluetoothDevice;
 import android.bluetooth.BluetoothSocket;
 import android.content.Context;
+import android.content.Intent;
 import android.os.Handler;
 import android.os.Looper;
 import android.util.Log;
@@ -28,6 +29,7 @@ public class BluetoothService {
     private OutputStream outputStream;
     private List<String> receivedDataList = new ArrayList<>();
     private StringBuilder dataBuffer = new StringBuilder();
+    private Context context;
 
     // Değişken tanımları
     private int RGB_LED_red = 0;
@@ -143,6 +145,7 @@ public class BluetoothService {
             // Tam veri bloğunu işlemeye gönder
             updateVariables(completeData);
 
+
             endIndex = dataBuffer.indexOf("*");
         }
     }
@@ -225,8 +228,14 @@ public class BluetoothService {
                 } else if (part.startsWith("A")) {
                     String value = part.substring(1); // "A1" -> "1"
                     BUZZER_status = Integer.parseInt(value);
+                    if (BUZZER_status == 1) {
+                        Intent intent = new Intent("com.example.myhome.BUZZER_ACTIVE");
+                        context.sendBroadcast(intent);
+                    }
+
                 } else if (part.startsWith("G")) {
                     String value = part.substring(1); // "G1" -> "1"
+
                     GARDEN_LIGHT_status = Integer.parseInt(value);
                 } else if (part.startsWith("H")) {
                     String value = part.substring(1); // "H1" -> "1"

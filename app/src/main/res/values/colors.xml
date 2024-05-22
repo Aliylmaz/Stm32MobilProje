@@ -30,14 +30,15 @@
     <color name="indigo">#FF3F51B5</color>
     <color name="purple">#FF9C27B0</color>
 
-    <array name="rainbow">
-        <item>@color/red</item>
-        <item>@color/orange</item>
-        <item>@color/yellow</item>
-        <item>@color/green</item>
+    <array name="blue_to_red">
         <item>@color/blue</item>
-        <item>@color/indigo</item>
-        <item>@color/purple</item>
+        <item>@color/orange</item>
+        <item>@color/red</item>
+
+
+
+
+
     </array>
 
 </resources>

@@ -20,5 +20,10 @@
         android:name="com.example.myhome.Kontrol"
         android:label="kontrol"
         tools:layout="@layout/fragment_kontrol" />
+    <fragment
+        android:id="@+id/alarmFragmnet"
+        android:name="com.example.myhome.alarmFragmnet"
+        android:label="fragment_alarm_fragmnet"
+        tools:layout="@layout/fragment_alarm_fragmnet" />
 
 </navigation>
